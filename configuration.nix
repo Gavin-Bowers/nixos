@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 let
   # bash script to let dbus know about important env variables and
@@ -67,7 +67,10 @@ in
     waybar
     gh #github cli
     git
+    inputs.nh.packages."${pkgs.system}".default
   ];
+
+  environment.sessionVariables.FLAKE = "/home/gavinb/nixos";
 
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
