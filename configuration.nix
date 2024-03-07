@@ -46,7 +46,6 @@ in
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   environment.systemPackages = with pkgs; [
-    alacritty # gpu accelerated terminal
     dbus   # make dbus-update-activation-environment available in the path
     dbus-sway-environment
     configure-gtk
@@ -64,10 +63,14 @@ in
     mako # notification system developed by swaywm maintainer
     wdisplays # tool to configure displays
     neovim
-    waybar
+    waybar #Taskbar
     gh #github cli
     git
     inputs.nh.packages."${pkgs.system}".default
+    inputs.unstable.legacyPackages."${pkgs.system}".alacritty
+    pavucontrol #Audio setting gui
+    dunst # Notification daemon
+    libnotify
   ];
 
   environment.sessionVariables.FLAKE = "/home/gavinb/nixos";
